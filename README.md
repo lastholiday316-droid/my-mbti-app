@@ -13,9 +13,8 @@ npm run dev
 
 ## Supabase 설정
 
-1. `detabase/schema.sql` 내용을 Supabase 프로젝트의 SQL Editor에서 실행해 `mbti_results` 테이블과 RLS 정책을 생성합니다.
-2. Database > Replication 메뉴에서 `mbti_results` 테이블의 Realtime 토글을 켜면 홈 화면 참여자 수 배너가 실시간으로 갱신됩니다.
-3. 접속 정보는 이미 `.env.local`에 채워져 있습니다. (`.env.example` 참고)
+1. `database/schema.sql` 내용을 Supabase 프로젝트의 SQL Editor에서 실행해 `mbti_results` 테이블, RLS 정책, Realtime 발행 설정을 초기화합니다. (재실행해도 안전합니다.)
+2. Supabase 프로젝트 URL과 Publishable Key는 `lib/supabase/client.ts`에 직접 하드코딩되어 있습니다. 별도의 `.env` 파일은 사용하지 않습니다. 다른 프로젝트로 교체하려면 이 파일의 두 상수 값만 바꾸면 됩니다.
 
 ## 주요 구조
 
@@ -25,5 +24,5 @@ npm run dev
 - `lib/mbti/questions.ts` — 질문/선택지 데이터
 - `lib/mbti/personas.ts` — 16가지 IT 부캐 페르소나 데이터
 - `lib/mbti/scoring.ts` — 점수 집계 및 동점 처리(I, N, T, P 우선) 로직
-- `lib/supabase/client.ts` — Supabase 클라이언트
-- `detabase/schema.sql` — Supabase 테이블 스키마
+- `lib/supabase/client.ts` — Supabase 클라이언트 (프로젝트 URL·Key 하드코딩)
+- `database/schema.sql` — Supabase 테이블/정책/Realtime 초기화 스크립트
